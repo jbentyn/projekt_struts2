@@ -51,11 +51,12 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
 
 	private Map<String, Object> session = new HashMap<>();
-
+	@SkipValidation
 	public String login() throws Exception {
-		//put the username to the session parameter
-		this.session.put(USER_CONTEXT_PARAM_NAME, this.username);
+//		//put the username to the session parameter
+//		this.session.put(USER_CONTEXT_PARAM_NAME, this.username);
 
+		
 		return SUCCESS;
 	}
 
@@ -66,6 +67,11 @@ public class LoginAction extends ActionSupport implements SessionAware {
 		System.out.println(ServletActionContext.getServletContext().getRealPath(""));
 		System.out.println(userDAO.findAll());	
 		return null;
+	}
+	
+	@SkipValidation
+	public String error(){
+		return "error";
 	}
 
 	public String getUsername() {

@@ -1,21 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%-- INCLUDE IT TO HAVE ACCESS TO THE STRUTS 2 TAGS --%>
-<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 
 <div>
-	<s:actionerror/>
-
-	<s:form method="POST" action="loginLogin">
-		<s:textfield name="username" key="labels.login.username"/>
-		<s:password name="password" key="labels.login.password"/>
-		
-		<s:submit  key="buttons.login"/>
-		<s:submit  key="buttons.register" action="inputRegister"/>
-	</s:form>
-	
-<s:form method="POST" action="jpaTestLogin">
-<s:textfield name="username" key="labels.login.username"/>
-		<s:submit  key="labels.login.password" />
+	<s:actionerror />
+SPRING SECURITY
+<s:form action="j_spring_security_check" method="post">
+    <s:textfield name="j_username"  key="labels.login.username"  />
+    <s:password name="j_password" key="labels.login.password"  />
+     <input type="hidden"  name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    <s:submit name="submit" key="buttons.login" />
 </s:form>
-	
 </div>

@@ -11,9 +11,9 @@ import pl.dmcs.nsai.struts2.actions.LoginAction;
 public class ActionsConfig {
 	
 	
-	@Bean
-	@Scope (value="Prototype")
-	public LoginAction getLoginAction(){
-		return new LoginAction();
-	}
+//	@Bean
+//	@Scope (value="Prototype")
+//	public LoginAction getLoginAction(){
+//		return new LoginAction();
+//	}
 }

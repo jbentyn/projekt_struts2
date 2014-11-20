@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
 
 	<display-name>Struts 2</display-name>
 
@@ -7,29 +9,44 @@
 		<param-name>org.apache.tiles.impl.BasicTilesContainer.DEFINITIONS_CONFIG</param-name>
 		<param-value>/WEB-INF/classes/tiles.xml</param-value>
 	</context-param>
-	
-	<!-- Enable Spring class configuration  -->
-  <context-param>
-      <param-name>contextClass</param-name>
-      <param-value>
+
+	<!-- Enable Spring class configuration -->
+	<context-param>
+		<param-name>contextClass</param-name>
+		<param-value>
           org.springframework.web.context.support.AnnotationConfigWebApplicationContext
       </param-value>
-  </context-param>
-
-  <!-- Spring configuration class location -->
-  <context-param>
-      <param-name>contextConfigLocation</param-name>
-      <param-value>pl.dmcs.nsai.struts2.spring.ApplicationConfig,pl.dmcs.nsai.struts2.spring.ActionsConfig</param-value>
-  </context-param>
+	</context-param>
 	
+	<!-- Spring configuration class location -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+	      pl.dmcs.nsai.struts2.spring.ApplicationConfig,
+	      pl.dmcs.nsai.struts2.spring.ActionsConfig,
+	      pl.dmcs.nsai.struts2.spring.SecurityConfig
+      </param-value>
+	</context-param>
+
 
 	<listener>
 		<listener-class>org.apache.struts2.tiles.StrutsTilesListener</listener-class>
 	</listener>
 	<!-- Spring context listener -->
 	<listener>
-    	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-  	</listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!-- Spring security -->
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 
 	<filter>
 		<filter-name>struts2</filter-name>
@@ -41,21 +58,12 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
-<!-- Spring security -->
-	<filter>
-        <filter-name>springSecurityFilterChain</filter-name>
-        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-    </filter>
-    
-    <filter-mapping>
-        <filter-name>springSecurityFilterChain</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
+
 
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
-	
+
 	<session-config>
 		<session-timeout>1</session-timeout>
 	</session-config>

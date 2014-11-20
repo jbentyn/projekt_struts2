@@ -1,6 +1,7 @@
 package pl.dmcs.nsai.struts2.domain;
 
 import java.io.Serializable;
+import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,10 +10,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 @Entity
 @Table(name="users" )
-public class UserData implements Serializable {
-	
+//implementing userDetails for spring security
+public class UserData implements Serializable , UserDetails{
+
 	private static final long serialVersionUID = -7700909816583618817L;
 
 	@Id
@@ -38,7 +43,40 @@ public class UserData implements Serializable {
 	@Column(name="password")
 	private String password;
 	
+	
+	
+	
 	//Getters & setters
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public String getUsername() {
+		return login;
+	}
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
 	public Long getId() {
 		return id;
 	}

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
 
 import org.springframework.stereotype.Repository;
 
@@ -23,6 +24,12 @@ public class UserDAO {
 		return users;
 	}
 	
+	public UserData findByLogin(String login){
+		Query q = em.createQuery("select m from UserData m where login= :login");
+		q.setParameter("login", login);
+		UserData user = (UserData)q.getSingleResult();
+		return user;
+	}
 	
 	//Getters & setters
 	public EntityManager getEntityManager() {
