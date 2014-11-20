@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ 
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	<definition name="baseLayout" template="/views/layout/BaseLayout.jsp">
+		<put-attribute name="header" value="/views/layout/Header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/views/layout/Footer.jsp" />
+	</definition>
+
+	<definition name="baseLayoutWithMenu" template="/views/layout/BaseLayoutWithMenu.jsp" extends="baseLayout">
+		<put-attribute name="topMenu" value="/views/layout/TopMenu.jsp" />
+	</definition>
+
+	<definition name="LoginDef" extends="baseLayout">
+		<put-attribute name="body" value="/views/Login.jsp" />
+	</definition>
+
+	<definition name="RegisterDef" extends="baseLayout">
+		<put-attribute name="body" value="/views/Register.jsp" />
+	</definition>
+	
+	<definition name="WelcomeDef" extends="baseLayoutWithMenu">
+		<put-attribute name="body" value="/views/Welcome.jsp" />
+	</definition>
+	
+	<definition name="OtherViewDef" extends="baseLayoutWithMenu">
+		<put-attribute name="body" value="/views/OtherView.jsp" />
+	</definition>
+</tiles-definitions>
+
+

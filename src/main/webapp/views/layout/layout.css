@@ -1,0 +1,26 @@
+#app-body {
+	background: #4fbbe0;
+	width: 100%;
+	padding-top: 100px;
+	padding-bottom: 100px;
+}
+
+#app-header {
+	background: #c9ffd9;
+	width: 100%;
+	height: 100px;
+}
+
+#app-footer {
+	background: #064042;
+	width: 100%;
+	height: 100px;
+}
+
+.errorMessage {
+	display: block;
+	color: #7f5200;
+}
+.languages{
+	float:right;
+}
