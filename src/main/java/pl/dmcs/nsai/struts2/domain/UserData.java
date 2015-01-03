@@ -1,14 +1,18 @@
 package pl.dmcs.nsai.struts2.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,8 +25,9 @@ public class UserData implements Serializable , UserDetails{
 	private static final long serialVersionUID = -7700909816583618817L;
 
 	@Id
-	@GeneratedValue (strategy=GenerationType.AUTO)
-	@Column(name="id")
+	@SequenceGenerator(name="users_id_seq",sequenceName="users_id_seq",allocationSize=1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator="users_id_seq")
+	@Column(name="id",updatable=false)
 	private Long id;
 	
 	@Column(name="login")
@@ -42,15 +47,27 @@ public class UserData implements Serializable , UserDetails{
 	
 	@Column(name="password")
 	private String password;
+	@Transient
+	private List<GrantedAuthority> authorities = new ArrayList<>();
 	
 	
-	
-	
+	public UserData(){
+		
+	}
+	public UserData( String login, String name, String lastName,
+			String email, String mobile, String password) {
+
+		this.login = login;
+		this.name = name;
+		this.lastName = lastName;
+		this.email = email;
+		this.mobile = mobile;
+		this.password = password;
+	}
 	//Getters & setters
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
+		return authorities;
 	}
 	@Override
 	public String getUsername() {
@@ -59,22 +76,22 @@ public class UserData implements Serializable , UserDetails{
 	@Override
 	public boolean isAccountNonExpired() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 	@Override
 	public boolean isAccountNonLocked() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 	@Override
 	public boolean isCredentialsNonExpired() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 	@Override
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 	
 	public Long getId() {

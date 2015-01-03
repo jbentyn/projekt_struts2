@@ -16,22 +16,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-		auth.inMemoryAuthentication().withUser("user").password("password").roles("USER");
+		auth.inMemoryAuthentication().withUser("user").password("user").roles("user");
+		
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-	      .authorizeRequests()
-	        .antMatchers("/signup","/about").permitAll() 
-	        .antMatchers("/admin/**").hasRole("ADMIN") 
-	        .anyRequest().authenticated() 
-	        .and()
-	    .formLogin()  
-	        .loginPage("/index.jsp")
+		  .authorizeRequests()
+		  .antMatchers("/").permitAll()
+			.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
+			.antMatchers("/dba/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_DBA')")
+			.and()
+	    .formLogin()
+	        .loginPage("/index")
+	       // .usernameParameter("username")
+	       // .passwordParameter("password")
 	        .defaultSuccessUrl("/loginLogin.action") 
-	        .failureUrl("/errorLogin.action")
-	        .permitAll(); 
+	        .failureUrl("/errorLogin.action");
 	}
 
 	@Override

@@ -22,9 +22,9 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
+		 pl.dmcs.nsai.struts2.spring.SecurityConfig,
 	      pl.dmcs.nsai.struts2.spring.ApplicationConfig,
-	      pl.dmcs.nsai.struts2.spring.ActionsConfig,
-	      pl.dmcs.nsai.struts2.spring.SecurityConfig
+	      pl.dmcs.nsai.struts2.spring.ActionsConfig
       </param-value>
 	</context-param>
 
@@ -32,11 +32,12 @@
 	<listener>
 		<listener-class>org.apache.struts2.tiles.StrutsTilesListener</listener-class>
 	</listener>
-	<!-- Spring context listener -->
+	
+<!-- Spring context listener -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-
+	
 	<!-- Spring security -->
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
@@ -47,6 +48,7 @@
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+
 
 	<filter>
 		<filter-name>struts2</filter-name>

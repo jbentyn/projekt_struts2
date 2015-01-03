@@ -11,10 +11,7 @@
 		<put-attribute name="footer" value="/views/layout/Footer.jsp" />
 	</definition>
 
-	<definition name="baseLayoutWithMenu" template="/views/layout/BaseLayoutWithMenu.jsp" extends="baseLayout">
-		<put-attribute name="topMenu" value="/views/layout/TopMenu.jsp" />
-	</definition>
-
+	
 	<definition name="LoginDef" extends="baseLayout">
 		<put-attribute name="body" value="/views/Login.jsp" />
 	</definition>
@@ -23,12 +20,16 @@
 		<put-attribute name="body" value="/views/Register.jsp" />
 	</definition>
 	
-	<definition name="WelcomeDef" extends="baseLayoutWithMenu">
+	<definition name="WelcomeDef" extends="baseLayout">
 		<put-attribute name="body" value="/views/Welcome.jsp" />
 	</definition>
 	
-	<definition name="OtherViewDef" extends="baseLayoutWithMenu">
+	<definition name="OtherViewDef" extends="baseLayout">
 		<put-attribute name="body" value="/views/OtherView.jsp" />
+	</definition>
+
+	<definition name="AppointmentDef" extends="baseLayout">
+		<put-attribute name="body" value="/views/appointment/Appointment.jsp" />
 	</definition>
 </tiles-definitions>
 

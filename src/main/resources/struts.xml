@@ -14,13 +14,8 @@
 		</result-types>
 
 		<interceptors>
-			<!-- add mapping to the created login interceptor -->
-			<interceptor name="loginInterceptor"
-				class="pl.dmcs.nsai.struts2.interceptors.LoginInterceptor" />
-
-			<!-- put the interceptor to the interceptors stack -->
+		
 			<interceptor-stack name="nsaiDefaultStack">
-				<interceptor-ref name="loginInterceptor" />
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
 		</interceptors>
