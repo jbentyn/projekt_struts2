@@ -1,5 +1,7 @@
 #app-body{
 	clear:both;
+	padding-top:25px;
+	min-height: 500px;
 }
 
 #app-header {
@@ -27,7 +29,7 @@
 	display: block;
 	color: #7f5200;
 }
-.languages{
+.float-right{
 	float:right;
 }
 
@@ -42,4 +44,14 @@
 #doctors-list{
 	float:left;
 	width:30%;
+	margin-top:45px;
+}
+#users-list{
+	float:left;
+	width:30%;
+	margin-top:45px;
+}
+.form-container{
+	width:60%;
+	margin:auto;
 }

@@ -1,42 +1,34 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ include file="Tags.jsp" %>
-<div>
-	<s:actionerror />
-	SPRING SECURITY
-	  <s:if test="%{#parameters.error != null}">
-            <div style="color: red">Invalid User</div>
-        </s:if>
-        
-	<%-- <s:form action="/j_spring_security_check" method="post">
-		<s:textfield name="j_username" key="labels.login.username" />
-		<s:password name="j_password" key="labels.login.password" />
-		<input type="hidden" name="${_csrf.parameterName}"
-			value="${_csrf.token}" />
-		<s:submit name="submit" key="buttons.login" />
-	</s:form> --%>
-	
-	<form name='loginForm'
-		    action="<c:url value='j_spring_security_check' />" method='POST'>
- 
-		    <table>
-			<tr>
-				<td>User:</td>
-				<td><input type='text' name='user' value=''></td>
-			</tr>
-			<tr>
-				<td>Password:</td>
-				<td><input type='password' name='pass' /></td>
-			</tr>
-			<tr>
-			        <td colspan='2'>
-                                <input name="submit" type="submit" value="submit" />
-                                </td>
-			</tr>
-		   </table>
- 
-		   <input type="hidden" 
-                     name="${_csrf.parameterName}" value="${_csrf.token}" />
-		</form>
-	<sec:authorize access="hasRole('user')">Authenticated</sec:authorize>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="Tags.jsp"%>
+
+<div class="form-container">
+
+	<s:if test="%{#parameters.error != null}">
+		<div class="alert alert-dismissable alert-danger">Invalid username or password</div>
+	</s:if>
+
+
+	<!--   IMPORTANT: action name same as provided in fromLogin in Spring Security configuration -->
+	<s:form action="initLogin" method="post" cssClass="form-horizontal">
+		<legend>Login</legend>
+		<div class="form-group">
+			<label for="username" class="col-lg-2 control-label">Username</label>
+			<div class="col-lg-10">
+				<input name="username" class="form-control" id="username" placeholder="Login" type="text">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="password" class="col-lg-2 control-label">Password</label>
+			<div class="col-lg-10">
+				<input name="password" class="form-control" id="password" placeholder="Password" type="password">
+			</div>
+		</div>
+
+
+		<div class="form-group">
+			<div class="col-lg-10 col-lg-offset-2">
+				<button type="submit" class="btn btn-primary float-right">Login</button>
+			</div>
+		</div>
+	</s:form>
 </div>

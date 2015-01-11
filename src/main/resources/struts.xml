@@ -6,6 +6,7 @@
 	<constant name="struts.devMode" value="true" />
 	<constant name="struts.custom.i18n.resources" value="MessageResources" />
 	<constant name="struts.mapper.action.prefix.enabled" value="true" />
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"/>
 
 	<package name="struts-2-nsai" namespace="/" extends="struts-default">
 		<result-types>
@@ -35,31 +36,7 @@
 			<result name="success" type="tiles">WelcomeDef</result>
 		</action>
 
-		<!-- Some other action mapping -->
-		<action name="*OtherAction" class="pl.dmcs.nsai.struts2.actions.OtherAction"
-			method="{1}">
-			<result name="input" type="tiles">OtherViewDef</result>
-			<result name="success" type="tiles">OtherViewDef</result>
-		</action>
-
-		<action name="*AjaxAction" class="pl.dmcs.nsai.struts2.actions.AjaxAction"
-			method="{1}">
-			<!-- Store action elements in the session -->
-			<interceptor-ref name="nsaiDefaultStack" />
-			<interceptor-ref name="scope">
-				<param name="session">strings</param>
-				<param name="autoCreateSession">true</param>
-			</interceptor-ref>
-
-			<result name="input">views/ajax/StringsList.jsp</result>
-			<result name="success">views/ajax/StringsList.jsp</result>
-		</action>
-
-		<!--Localization action -->
-		<action name="locale" class="pl.dmcs.nsai.struts2.actions.LocaleAction"
-			method="execute">
-			<result name="success" type="tiles">LoginDef</result>
-		</action>
+		
 
 	</package>
 </struts>

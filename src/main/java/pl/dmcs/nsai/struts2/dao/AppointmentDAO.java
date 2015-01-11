@@ -48,8 +48,16 @@ public class AppointmentDAO {
 	}
 	
 	
+	
 	@Transactional
-	public AppointmentData create(DoctorData doctor,UserData user, Date date){
+	public AppointmentData create(DoctorData doctor,UserData user, Date date) throws AppointmentException{
+		Query query = em.createQuery("SELECT app FROM AppointmentData app WHERE app.doctor.id =:doctorId AND  app.date =:date");
+		query.setParameter("doctorId", doctor.getId());
+		query.setParameter("date", date);
+		
+		if( !query.getResultList().isEmpty()){
+			throw new AppointmentException();
+		}
 		AppointmentData app = new AppointmentData();
 		app.setDate(date);
 		app.setDoctor(doctor);
@@ -61,7 +69,13 @@ public class AppointmentDAO {
 	@Transactional
 	public void delete(AppointmentData app){
 		em.remove(app);
+	}
 	
+	@Transactional
+	public void delete(Long appId){
+		Query query = em.createQuery("DELETE  FROM AppointmentData app WHERE app.id=:id");
+		query.setParameter("id", appId);
+		query.executeUpdate();
 	}
 	@Transactional
 	public AppointmentData modify(AppointmentData app){

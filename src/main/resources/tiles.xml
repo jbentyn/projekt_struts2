@@ -31,6 +31,23 @@
 	<definition name="AppointmentDef" extends="baseLayout">
 		<put-attribute name="body" value="/views/appointment/Appointment.jsp" />
 	</definition>
+	
+	<definition name="UserListDef" extends="baseLayout">
+		<put-attribute name="body" value="/views/user/List.jsp" />
+	</definition>
+	<definition name="UserRegistrationDef" extends="baseLayout">
+		<put-attribute name="body" value="/views/user/Register.jsp" />
+	</definition>
+	
+	<definition name="DoctorListDef" extends="baseLayout">
+		<put-attribute name="body" value="/views/doctor/List.jsp" />
+	</definition>
+	
+	<definition name="ContactDef" extends="baseLayout">
+		<put-attribute name="body" value="/views/Contact.jsp" />
+	</definition>
+	
+	
 </tiles-definitions>
 
 

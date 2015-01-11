@@ -23,8 +23,7 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 		 pl.dmcs.nsai.struts2.spring.SecurityConfig,
-	      pl.dmcs.nsai.struts2.spring.ApplicationConfig,
-	      pl.dmcs.nsai.struts2.spring.ActionsConfig
+	      pl.dmcs.nsai.struts2.spring.ApplicationConfig
       </param-value>
 	</context-param>
 
@@ -38,7 +37,7 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	
-	<!-- Spring security -->
+	<!-- Spring security --> 
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -60,13 +59,11 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
-
-
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
 
 	<session-config>
-		<session-timeout>1</session-timeout>
+		<session-timeout>15</session-timeout>
 	</session-config>
 </web-app>

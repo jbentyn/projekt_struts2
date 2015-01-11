@@ -11,7 +11,7 @@
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
 			<property name="javax.persistence.jdbc.user" value="struts" />
 			<property name="javax.persistence.jdbc.password" value="struts" />
-			<property name="eclipselink.logging.level" value="ALL" />
+			<property name="eclipselink.logging.level" value="WARNING" />
 			<property name="eclipselink.weaving" value="false"/>
 		</properties>
 		

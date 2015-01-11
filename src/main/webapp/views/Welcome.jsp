@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%-- INCLUDE ITS TO HAVE ACCESS TO THE STRUTS 2 TAGS --%>
 <%@ include file="Tags.jsp" %>
-
+<%@ include file="Messages.jsp"%>
 <div>
 	<h1>Welcome to Dental Care</h1>
 		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut a vehicula quam, vel efficitur lacus. Cras ut congue quam. Nulla venenatis sapien

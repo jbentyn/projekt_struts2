@@ -5,14 +5,17 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.JoinColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -47,9 +50,12 @@ public class UserData implements Serializable , UserDetails{
 	
 	@Column(name="password")
 	private String password;
-	@Transient
-	private List<GrantedAuthority> authorities = new ArrayList<>();
-	
+	@ManyToMany(cascade=CascadeType.REMOVE)
+	  @JoinTable(
+	      name="user_role",
+	      joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
+	      inverseJoinColumns={@JoinColumn(name="role_id", referencedColumnName="id")})
+	private List<RoleData> roles = new ArrayList<>();
 	
 	public UserData(){
 		
@@ -64,10 +70,19 @@ public class UserData implements Serializable , UserDetails{
 		this.mobile = mobile;
 		this.password = password;
 	}
+	
+	
+	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append(name).append(" ").append(lastName);
+		return builder.toString();
+	}
 	//Getters & setters
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return authorities;
+		return roles;
 	}
 	@Override
 	public String getUsername() {
@@ -75,22 +90,18 @@ public class UserData implements Serializable , UserDetails{
 	}
 	@Override
 	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 	@Override
 	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 	@Override
 	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 	
@@ -135,6 +146,12 @@ public class UserData implements Serializable , UserDetails{
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public List<RoleData> getRoles() {
+		return roles;
+	}
+	public void setRoles(List<RoleData> roles) {
+		this.roles = roles;
 	}
 	
 	

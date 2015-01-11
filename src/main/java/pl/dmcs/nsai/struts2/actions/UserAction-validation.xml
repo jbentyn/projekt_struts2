@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN"
+ "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+ 
+<validators>
+
+
+<field name="user.name">
+    <field-validator type="requiredstring">
+        <message>Name is required</message>
+    </field-validator>
+</field>
+
+<field name="user.lastName">
+    <field-validator type="requiredstring">
+        <message>Last name is required</message>
+    </field-validator>
+</field>
+
+<field name="user.login">
+    <field-validator type="requiredstring">
+        <message>Login is required</message>
+    </field-validator>
+</field>
+
+<field name="password">
+    <field-validator type="requiredstring">
+        <message>Password is required</message>
+    </field-validator>
+</field>
+
+<field name="user.email">
+    <field-validator type="email">
+        <message>You must enter a valid e-mail address</message>
+    </field-validator>
+</field>
+
+<field name="user.mobile">
+	<field-validator type="regex">
+		<param name="regex"><![CDATA[\d{3}-\d{3}-\d{3}]]></param>
+		<message>Phone number must be entered as 999-999-999.</message>
+	</field-validator>
+</field>
+ 
+
+</validators>

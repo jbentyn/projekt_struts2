@@ -9,7 +9,6 @@ import javax.persistence.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 import pl.dmcs.nsai.struts2.domain.DoctorData;
-import pl.dmcs.nsai.struts2.domain.UserData;
 
 public class DoctorDAO {
 	@PersistenceContext(unitName="StrutsPersistence")
@@ -22,16 +21,34 @@ public class DoctorDAO {
 	}
 	
 	@Transactional
+	public DoctorData create(DoctorData doctor){
+		em.persist(doctor);
+		return doctor;
+	}
+	
+	@Transactional
 	public DoctorData create(Long id, String name, String lastName){
 		DoctorData doctor = new DoctorData( name, lastName);
 		em.persist(doctor);
 		return doctor;
 	}
+	private void beforeDelete(Long doctorId){
+		Query query = em.createQuery("DELETE  FROM AppointmentData app WHERE app.doctor.id=:id");
+		query.setParameter("id", doctorId);
+		query.executeUpdate();
+	}
 	@Transactional
 	public void delete(DoctorData doctor){
-		//TODO cascade appointments
+		beforeDelete(doctor.getId());
 		em.remove(doctor);
 	
+	}
+	@Transactional
+	public void delete(Long id){
+		beforeDelete(id);
+		Query query = em.createQuery("DELETE  FROM DoctorData doctor WHERE doctor.id=:id");
+		query.setParameter("id", id);
+		query.executeUpdate();
 	}
 	@Transactional
 	public DoctorData modify(DoctorData doctor){

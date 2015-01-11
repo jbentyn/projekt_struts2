@@ -2,5 +2,6 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
 <div>
-	<span ><s:text name="labels.footer.example"/></span>
+<hr style="border-color:#209de5; font-size:10;">
+	Made By: Jakub Bentyn 194311
 </div>

@@ -18,4 +18,19 @@ public class DoctorService {
 	public DoctorData findById(Long id){
 		return dao.findById(id);
 	}
+	
+	public DoctorData create(DoctorData doctor){
+		return dao.create(doctor);
+	}
+	
+	public void delete(DoctorData doctor){
+		dao.delete(doctor);
+	}
+
+	public void delete(Long id){
+		dao.delete(id);
+	}
+	public DoctorData modify(DoctorData doctor){
+		return dao.modify(doctor);
+	}
 }

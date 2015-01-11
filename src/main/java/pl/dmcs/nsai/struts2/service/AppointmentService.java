@@ -1,15 +1,13 @@
 package pl.dmcs.nsai.struts2.service;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import pl.dmcs.nsai.struts2.dao.AppointmentDAO;
-import pl.dmcs.nsai.struts2.dao.DoctorDAO;
-import pl.dmcs.nsai.struts2.dao.UserDAO;
+import pl.dmcs.nsai.struts2.dao.AppointmentException;
 import pl.dmcs.nsai.struts2.domain.AppointmentData;
 import pl.dmcs.nsai.struts2.domain.DoctorData;
 import pl.dmcs.nsai.struts2.domain.UserData;
@@ -33,10 +31,14 @@ public class AppointmentService  {
 	public List<AppointmentData> getForUserAfterDate(Long userId, Date date) {
 		return dao.getForUserAfterDate(userId, date);
 	}
-	public AppointmentData create ( Long doctorId, Long userId,String date) throws ParseException{
+	public AppointmentData create ( Long doctorId, Long userId,String date) throws ParseException, AppointmentException{
 		
 		DoctorData doctor=doctorService.findById(doctorId);
 		UserData user = userService.findById(userId);
 		return dao.create(doctor, user,DateUtil.FORMAT_HOURS.parse(date));
+	}
+	
+	public void delete (Long appId){
+		dao.delete(appId);
 	}
 }
